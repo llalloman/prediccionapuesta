@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: prediccion_apuesta_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: apuesta_user
+      POSTGRES_PASSWORD: apuesta_pass
+      POSTGRES_DB: apuesta_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - prediccion_apuesta_postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: prediccion_apuesta_redis
+    restart: always
+    ports:
+      - "6381:6379"
+
+volumes:
+  prediccion_apuesta_postgres_data:
